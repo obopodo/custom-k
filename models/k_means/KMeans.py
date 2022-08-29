@@ -37,7 +37,7 @@ class KMeans(Model):
 
 
     def predict(self, X) -> np.ndarray:
-        dists = np.asarray([np.linalg.norm(X - mean, axis=1) for mean in self.means]).T
+        dists = np.asarray([norm(X - mean, axis=1) for mean in self.means]).T
         predicts = np.argmin(dists, axis=1)
         return predicts
 
@@ -62,10 +62,9 @@ class KMeans(Model):
         self.means = self._coerse_init_means()
         self._prev_means = self.means
 
-        for i in range(self.max_iter):
+        for _ in range(self.max_iter):
             self.predicts_ = self.predict(X)
             self.means = self._update_means(X)
             if self._is_converged:
                 break
             self._prev_means = self.means
-

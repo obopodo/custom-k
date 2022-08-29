@@ -5,11 +5,11 @@ class Model(metaclass=ABCMeta):
     @abstractmethod
     def fit(self, X, y):
         '''fit model'''
-        ...
+        self.predicts_ = np.zeros_like(y)
     
     
     @abstractmethod
-    def predict(self, X):
+    def predict(self, X) -> np.ndarray:
         ...
 
 
